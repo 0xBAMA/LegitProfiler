@@ -389,7 +389,7 @@ namespace ImGuiUtils
       if (graphHeight * 2 + sizeMargin + sizeMargin < canvasSize.y)
       {
         ImGui::Columns(2);
-        size_t textSize = 50;
+        size_t textSize = 50; ( void ) textSize;
         ImGui::Checkbox("Stop profiling", &stopProfiling);
         //ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x - textSize);
         ImGui::Checkbox("Colored legend text", &useColoredLegendText);

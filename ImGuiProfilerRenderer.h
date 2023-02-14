@@ -150,7 +150,7 @@ namespace ImGuiUtils
       float markerRigthRectMargin = 3.0f;
       float markerRightRectHeight = 10.0f;
       float markerRightRectSpacing = 4.0f;
-      float nameOffset = 30.0f;
+      // float nameOffset = 30.0f;
       glm::vec2 textMargin = glm::vec2(5.0f, -3.0f);
 
       auto &currFrame = frames[(currFrameIndex - frameIndexOffset - 1 + 2 * frames.size()) % frames.size()];
@@ -193,11 +193,11 @@ namespace ImGuiUtils
 
         float taskTimeMs = float(task.endTime - task.startTime);
         std::ostringstream timeText;
-        timeText.precision(2);
-        timeText << std::fixed << std::string("[") << (taskTimeMs * 1000.0f);
+        timeText.precision(3);
+        timeText << std::fixed << std::string("[") << (taskTimeMs * 1000.0f) << "ms] " << task.name;
 
         Text(drawList, markerRightRectMax + textMargin, textColor, timeText.str().c_str());
-        Text(drawList, markerRightRectMax + textMargin + glm::vec2(nameOffset, 0.0f), textColor, (std::string("ms] ") + task.name).c_str());
+        // Text(drawList, markerRightRectMax + textMargin + glm::vec2(nameOffset, 0.0f), textColor, (std::string("ms] ") + task.name).c_str());
       }
 
       /*
@@ -382,7 +382,7 @@ namespace ImGuiUtils
       int maxGraphHeight = 300;
       int availableGraphHeight = (int(canvasSize.y) - sizeMargin) / 2;
       int graphHeight = std::min(maxGraphHeight, availableGraphHeight);
-      int legendWidth = 200;
+      int legendWidth = 300;
       int graphWidth = int(canvasSize.x) - legendWidth;
       gpuGraph.RenderTimings(graphWidth, legendWidth, graphHeight, frameOffset);
       cpuGraph.RenderTimings(graphWidth, legendWidth, graphHeight, frameOffset);

@@ -350,7 +350,7 @@ namespace ImGuiUtils
     {
       stopProfiling = false;
       frameOffset = 0;
-      frameWidth = 3;
+      frameWidth = 1;
       frameSpacing = 1;
       useColoredLegendText = true;
       prevFpsFrameTime = std::chrono::system_clock::now();

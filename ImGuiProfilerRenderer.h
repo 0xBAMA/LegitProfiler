@@ -266,24 +266,26 @@ namespace ImGuiUtils {
 			int sizeMargin = int(ImGui::GetStyle().ItemSpacing.y);
 			int maxGraphHeight = 600;
 			int availableGraphHeight = ( int( canvasSize.y ) - sizeMargin ) / 2;
-			int graphHeight = std::min( maxGraphHeight, availableGraphHeight );
+			int graphHeight = std::min( maxGraphHeight, availableGraphHeight ) - ImGui::GetIO().Fonts->Fonts[ 0 ]->ConfigData->SizePixels - 2;
 			int legendWidth = 300;
 			int graphWidth = int( canvasSize.x ) - legendWidth;
+			ImGui::Text( "GPU" );
 			gpuGraph.RenderTimings( graphWidth, legendWidth, graphHeight, frameOffset );
+			ImGui::Text( "CPU" );
 			cpuGraph.RenderTimings( graphWidth, legendWidth, graphHeight, frameOffset );
-			if ( graphHeight * 2 + sizeMargin + sizeMargin < canvasSize.y ) {
-				ImGui::Columns( 2 );
-				size_t textSize = 50; ( void ) textSize;
-				ImGui::Checkbox( "Stop profiling", &stopProfiling );
-				ImGui::Checkbox( "Colored legend text", &useColoredLegendText );
-				ImGui::DragInt( "Frame offset", &frameOffset, 1.0f, 0, 400 );
-				ImGui::NextColumn();
+			// if ( graphHeight * 2 + sizeMargin + sizeMargin < canvasSize.y ) {
+			// 	ImGui::Columns( 2 );
+			// 	size_t textSize = 50; ( void ) textSize;
+			// 	ImGui::Checkbox( "Stop profiling", &stopProfiling );
+			// 	ImGui::Checkbox( "Colored legend text", &useColoredLegendText );
+			// 	ImGui::DragInt( "Frame offset", &frameOffset, 1.0f, 0, 400 );
+			// 	ImGui::NextColumn();
 
-				ImGui::SliderInt( "Frame width", &frameWidth, 1, 4 );
-				ImGui::SliderInt( "Frame spacing", &frameSpacing, 0, 2 );
-				ImGui::SliderFloat( "Transparency", &ImGui::GetStyle().Colors[ ImGuiCol_WindowBg ].w, 0.0f, 1.0f );
-				ImGui::Columns( 1 );
-			}
+			// 	ImGui::SliderInt( "Frame width", &frameWidth, 1, 4 );
+			// 	ImGui::SliderInt( "Frame spacing", &frameSpacing, 0, 2 );
+			// 	ImGui::SliderFloat( "Transparency", &ImGui::GetStyle().Colors[ ImGuiCol_WindowBg ].w, 0.0f, 1.0f );
+			// 	ImGui::Columns( 1 );
+			// }
 			if ( !stopProfiling ) {
 				frameOffset = 0;
 			}
